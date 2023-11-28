@@ -1,22 +1,56 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import * as marked from "marked";
+import "./App.scss";
 
 const App = () => {
+  const [newTxt, setNewTxt] = useState("");
+  const [html, setHtml] = useState("");
 
-  const [newTxt, setNewTxt] = useState("")
-
-  const inputChange = (event) => {
-    setNewTxt(event.target.value)
-  }
+  useEffect(() => {
+    // Fetch the content of the Markdown document (document.md)
+    fetch('/path/to/document.md')
+      .then(response => response.text())
+      .then(data => {
+        setNewTxt(data);
+        setHtml(marked.marked(data));
+      })
+      .catch(error => console.error('Error fetching Markdown document:', error));
+  }, []);
 
   return (
-    <div>
-      <textarea id="editor" cols="30" rows="10" onChange={inputChange} value={newTxt}></textarea>
-      <div id="preview">{newTxt}</div>
+    <div id="all_box">
+      <div className="all_box_top">
+        {/* Display Markdown content in the textarea */}
+        <textarea
+          id="editor"
+          cols="30"
+          rows="10"
+          onChange={(e) => {
+            const value = e.target.value;
+            setNewTxt(value);
+            setHtml(marked.marked(value));
+          }}
+          value={newTxt}
+        />
+      </div>
+      <div id="preview">
+        {/* Display combined original Markdown content and HTML conversion */}
+        <div>
+          <h2>Markdown and HTML Combined:</h2>
+          <p>{newTxt}</p>
+          <div dangerouslySetInnerHTML={{ __html: html }}></div>
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default App;
+
+
+
+
+
 
 // 这个项目的目标是构建一个功能与https://markdown-previewer.freecodecamp.rocks/
 // 相似的应用程序。满足以下用户故事并确保所有测试通过。你可以使用HTML、JavaScript、CSS、Bootstrap、SASS、React、Redux和jQuery的任意组合。你应该使用一个前端框架（比如React），因为这一部分是关于学习前端框架的。不推荐使用上面未列出的其他技术，使用它们将自担风险。我们正在考虑支持其他前端框架，如Angular和Vue，但它们目前不受支持。我们将接受并尽量修复所有使用此项目建议的技术堆栈的问题报告。祝你编码愉快！
