@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/markdownWeb/static/css/main.784d3d5e.css",
-    "main.js": "/markdownWeb/static/js/main.b44681e2.js",
-    "static/js/787.7a8108eb.chunk.js": "/markdownWeb/static/js/787.7a8108eb.chunk.js",
-    "index.html": "/markdownWeb/index.html",
-    "main.784d3d5e.css.map": "/markdownWeb/static/css/main.784d3d5e.css.map",
-    "main.b44681e2.js.map": "/markdownWeb/static/js/main.b44681e2.js.map",
-    "787.7a8108eb.chunk.js.map": "/markdownWeb/static/js/787.7a8108eb.chunk.js.map"
+    "main.css": "/www.rccke.top/static/css/main.784d3d5e.css",
+    "main.js": "/www.rccke.top/static/js/main.d190072e.js",
+    "static/js/787.7a8108eb.chunk.js": "/www.rccke.top/static/js/787.7a8108eb.chunk.js",
+    "index.html": "/www.rccke.top/index.html",
+    "main.784d3d5e.css.map": "/www.rccke.top/static/css/main.784d3d5e.css.map",
+    "main.d190072e.js.map": "/www.rccke.top/static/js/main.d190072e.js.map",
+    "787.7a8108eb.chunk.js.map": "/www.rccke.top/static/js/787.7a8108eb.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.784d3d5e.css",
-    "static/js/main.b44681e2.js"
+    "static/js/main.d190072e.js"
   ]
 }
