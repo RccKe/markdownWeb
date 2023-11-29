@@ -1,22 +1,64 @@
-import { useState } from "react";
+import React, { useState } from 'react';
+import { marked } from 'marked';
+import "./App.scss"
 
 const App = () => {
+  const [markdown, setMarkdown] = useState(`
+  # Welcome to my Markdown Previewer!
 
-  const [newTxt, setNewTxt] = useState("")
+  ## This is a sub-heading...
+  ### And here's some other cool stuff:
 
-  const inputChange = (event) => {
-    setNewTxt(event.target.value)
+  Here's some code, \`<div></div>\`, between 2 backticks.
+
+  \`\`\` js
+  // this is multi-line code:
+
+  function anotherExample(firstLine, lastLine) {
+    if (firstLine === 'i_no' && lastLine === 'i_no') {
+      return multiLineCode;
+    }
   }
+  \`\`\`
+
+  You can also make text **bold**... whoa!
+  Or _italic_.
+  Or... wait for it... **_both!_**
+  And feel free to go crazy ~~crossing stuff out~~.
+
+  There's also [links](https://www.freecodecamp.org), and
+  > Block Quotes!
+
+  And if you want to get really crazy, even tables:
+
+  Wild Header | Crazy Header | Another Header?
+  ------------ | ------------- | -------------
+  Your content can | be here, and it | can be here....
+  And here. | Okay. | I think we get it.
+
+  - And of course there are lists.
+    - Some are bulleted.
+  `);
+
+  const html = marked(markdown);
 
   return (
-    <div>
-      <textarea id="editor" cols="30" rows="10" onChange={inputChange} value={newTxt}></textarea>
-      <div id="preview">{newTxt}</div>
+    <div id="markdown-previewer">
+      <div className="editor-container">
+        <textarea
+          id="editor"
+          value={markdown}
+          onChange={(e) => setMarkdown(e.target.value)}
+        />
+      </div>
+      <div id="preview" dangerouslySetInnerHTML={{ __html: html }}></div>
     </div>
-  )
-}
+  );
+};
 
 export default App;
+
+
 
 // 这个项目的目标是构建一个功能与https://markdown-previewer.freecodecamp.rocks/
 // 相似的应用程序。满足以下用户故事并确保所有测试通过。你可以使用HTML、JavaScript、CSS、Bootstrap、SASS、React、Redux和jQuery的任意组合。你应该使用一个前端框架（比如React），因为这一部分是关于学习前端框架的。不推荐使用上面未列出的其他技术，使用它们将自担风险。我们正在考虑支持其他前端框架，如Angular和Vue，但它们目前不受支持。我们将接受并尽量修复所有使用此项目建议的技术堆栈的问题报告。祝你编码愉快！
